@@ -31,48 +31,51 @@ do_action( 'astral_breadcrumb_area' );
 						get_template_part( 'post', 'page' );
                     endwhile;
                     endif;
-                                         // The Query
-                                         echo "<h2>" .category_description( get_category_by_slug( 'nouvelle' )). "</h2>";
-                                         $args = array (
-                                             "category_name" => "nouvelle",
-                                             "posts_per_page" => 3
-                                             // "oderby" => "date",
-                                             // "order" => "ASC"
-                                                 );
-                                         $query1 = new WP_Query( $args );
-                                         
-                                         // The Loop
-                                         while ( $query1->have_posts() ) {
-                                             $query1->the_post();
-                                             echo '<h2>' . get_the_title() . '</h2>';
-                                             echo '<p>' .substr(get_the_excerpt(),0,200). '<p>';
-                                         }
-                                         
-                                         /* Restore original Post Data 
-                                         * NB: Because we are using new WP_Query we aren't stomping on the 
-                                         * original $wp_query and it does not need to be reset with 
-                                         * wp_reset_query(). We just need to set the post data back up with
-                                         * wp_reset_postdata().
-                                         */
-                                         wp_reset_postdata();
-                                         
-                                         
-                                         /* The 2nd Query (without global var) */
-                                         $args2 = array (
-                                             "category_name" => 'evenement',
-                                             "posts_per_page" => 10
-                                         );
-                     
-                                         $query2 = new WP_Query( $args2 );
-                                         
-                                         // The 2nd Loop
-                                         while ( $query2->have_posts() ) {
-                                             $query2->the_post();
-                                             echo '<li>' .get_the_title( $query2->post->ID ). '</li>';
-                                             the_post_thumbnail('thumbnail');
-                                         }
-                                         // Restore original Post Data
-                                         wp_reset_postdata(); 
+                                    // !!!!!!!!!! NOUVELLE
+                    echo '<h2>' . category_description( get_category_by_slug( 'nouvelle' ) ) . '</h2>';
+                    $args = array(
+                        "category_name" => "nouvelle",
+                        "posts_per_page" => "3"
+                        // "orderby" => "date",
+                        // "order" => "DESC"
+                    );
+
+                    // The Query
+                    $query1 = new WP_Query( $args );
+                    
+                    // The Loop
+                    while ( $query1->have_posts() ) {
+                        $query1->the_post();
+                        echo '<h2>' . get_the_title() . '</h2>';
+                        echo '<p>' . substr(get_the_excerpt(), 0, 200) . '</p>';
+                    }
+                    
+                    /* Restore original Post Data 
+                    * NB: Because we are using new WP_Query we aren't stomping on the 
+                    * original $wp_query and it does not need to be reset with 
+                    * wp_reset_query(). We just need to set the post data back up with
+                    * wp_reset_postdata().
+                    */
+                    wp_reset_postdata();
+                    
+                    
+                    /* The 2nd Query (without global var) */
+                    $args2 = array(
+                        "category_name" => "evenement",
+                        "posts_per_page" => "3"
+                    );
+
+                    $query2 = new WP_Query( $args2 );
+                    
+                    // The 2nd Loop
+                    while ( $query2->have_posts() ) {
+                        $query2->the_post();
+                        echo '<li>' . get_the_title( $query2->post->ID ) . '</li>';
+                        the_post_thumbnail('thumbnail');
+                    }
+                    
+                    // Restore original Post Data
+                    wp_reset_postdata();
                      
 					?>
                 </div>

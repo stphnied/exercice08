@@ -11,3 +11,12 @@
  Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
  Text Domain:  astral-enfant
 */
+
+h3 {
+    color: darkblue;
+}
+
+img:hover {
+    transition: all 0.5s ease;
+    transform: scale(1.05);
+}
